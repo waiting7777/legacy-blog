@@ -20,6 +20,8 @@ export type Post = PostMarkdownAttributes & { html: string }
 
 export type Categories = Record<string, number>
 
+export type Tags = Record<string, number>
+
 export const POSTS_PATH = path.join(process.cwd(), 'contents/posts')
 
 export async function getPosts() {
@@ -57,4 +59,26 @@ export async function getCategories() {
 export async function getPostsByCategory(category: string) {
   const posts = await getPosts()
   return posts.filter(post => post.category === category)
+}
+
+export async function getTags() {
+  const posts = await getPosts()
+  const tags = posts.reduce((prev: Record<string, number>, curr: PostMarkdownAttributes) => {
+    if (curr?.tags) {
+      curr.tags.split(', ').forEach(tag => {
+        if (prev[tag]) {
+          prev[tag] += 1
+        } else {
+          prev[tag] = 1
+        }
+      })
+    }
+    return prev
+  }, {})
+  return tags
+}
+
+export async function getPostsByTag(tag: string) {
+  const posts = await getPosts()
+  return posts.filter(post => post.tags.includes(tag))
 }
