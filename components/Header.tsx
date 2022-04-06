@@ -9,7 +9,7 @@ function Header() {
       <div className="container mx-auto flex items-center justify-between h-full px-4">
         <div className="flex gap-4 items-center">
           <Link href="/" passHref>
-            <div className='mr-4 cursor-pointer'>
+            <div className='mr-4 cursor-pointer flex items-center gap-1'>
               <FontAwesomeIcon className='w-5 h-5' icon={faDragon} />
               <span className='ml-2 text-xl'>Import Data</span>
             </div>

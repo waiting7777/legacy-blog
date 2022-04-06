@@ -5,3 +5,43 @@
 .container {
   max-width: 1140px;
 }
+
+.markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
+
+.markdown-body>main>p>code {
+  color: #e83e8c;
+}
+
+li {
+  list-style: disc !important;
+}
+
+.markdown-body {
+  margin: 0 auto !important;
+}
+
+h2 {
+  margin-top: 2.5rem !important;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.utterances {
+  max-width: 880px !important;
+  transform: translate(-64px, 0px);
+}
