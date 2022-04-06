@@ -1,4 +1,4 @@
-import { Posts, Tags, getTags, getPostsByTag } from '../../../services/posts'
+import { Posts, getTags, getPostsByTag } from '../../../services/posts'
 import { orderBy } from 'lodash'
 import PostCard from "../../../components/PostCard";
 import Pagination from "../../../components/Pagination";
@@ -6,8 +6,6 @@ import Seperator from '../../../components/Seperator';
 import { POSTPERPAGE } from '../../../config';
 import { ParsedUrlQuery } from 'querystring'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import axios from 'axios'
-import { HOST } from '../../../config'
 
 type Props = {
   posts: Posts,
@@ -26,7 +24,7 @@ const TagPost = ({ posts, tag, page }: InferGetStaticPropsType<typeof getStaticP
   return (
     <div>
       <div className="container mx-auto py-16 px-6 sm:px-0">
-        <div className="text-5xl font-medium">{tag}</div>
+        <div className="text-5xl font-medium capitalize">{tag}</div>
         <div className='text-xl mt-2 pl-1'>A collection of {posts?.length} posts - 1 / {Math.ceil(posts.length / POSTPERPAGE)}</div>
         <Seperator />
         <div className="grid grid-cols-3 relative mb-10">

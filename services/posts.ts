@@ -31,7 +31,7 @@ export async function getPosts() {
     dir.map(async (filename) => {
       const file = await fs.readFile(path.join(POSTS_PATH, filename), 'utf8')
       const { attributes, body } = parseFrontMatter<PostMarkdownAttributes>(file.toString())
-      return { ...attributes, date: dayjs(attributes.date).format('YYYY-MM-DD'), readingTime: `${Math.ceil(body.length / 1024)} MIN` }
+      return { ...attributes, category: attributes.category.toLowerCase(), tags: attributes.tags.toLowerCase(), date: dayjs(attributes.date).format('YYYY-MM-DD'), readingTime: `${Math.ceil(body.length / 1024)} MIN` }
     })
   )
 }
@@ -47,10 +47,11 @@ export async function getPost(slug: string) {
 export async function getCategories() {
   const posts = await getPosts()
   const categories = posts.reduce((prev: Record<string, number>, curr: PostMarkdownAttributes) => {
-    if (prev[curr.category]) {
-      prev[curr.category] += 1
+    const category = curr.category
+    if (prev[category]) {
+      prev[category] += 1
     } else {
-      prev[curr.category] = 1
+      prev[category] = 1
     }
     return prev
   }, {})

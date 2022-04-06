@@ -14,7 +14,7 @@ const Category = ({ categories }: InferGetStaticPropsType<typeof getStaticProps>
             <div className="leading-8 flex gap-4">
               <div>
                 <Link href={`/category/${category[0]}`}>
-                  <a className="hover:text-blue-500">
+                  <a className="hover:text-blue-500 capitalize">
                     {`${category[0]}(${category[1]})`}
                   </a>
                 </Link>

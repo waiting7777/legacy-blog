@@ -26,7 +26,7 @@ const CategoryPosts = ({ posts, category, page }: InferGetStaticPropsType<typeof
   return (
     <div>
       <div className="container mx-auto py-16 px-6 sm:px-0">
-        <div className="text-5xl font-medium">{category}</div>
+        <div className="text-5xl font-medium capitalize">{category}</div>
         <div className='text-xl mt-2 pl-1'>A collection of {posts?.length} posts - 1 / {Math.ceil(posts.length / POSTPERPAGE)}</div>
         <Seperator />
         <div className="grid grid-cols-3 relative mb-10">
