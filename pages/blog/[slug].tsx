@@ -44,9 +44,9 @@ const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <Head>
-        <title>{`Import Data - ${post.title}`}</title>
+        <title>{`Waiting7777 - ${post.title}`}</title>
         <meta name="description" content={post.excerpt} />
-        <meta property="og:title" content={`Import Data - ${post.title}`} />
+        <meta property="og:title" content={`Waiting7777 - ${post.title}`} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:image" content={`${HOST}${post.image}`} />
         <meta property="og:url" content={`${HOST}/blog/${post.slug}`} />

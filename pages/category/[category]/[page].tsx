@@ -6,8 +6,6 @@ import Seperator from '../../../components/Seperator';
 import { POSTPERPAGE } from '../../../config';
 import { ParsedUrlQuery } from 'querystring'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import axios from 'axios'
-import { HOST } from '../../../config'
 
 type Props = {
   posts: Posts,

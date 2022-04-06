@@ -1,4 +1,4 @@
-import { Posts, Categories, getPostsByCategory, getCategories } from '../../services/posts'
+import { Posts, getPostsByCategory, getCategories } from '../../services/posts'
 import { orderBy } from 'lodash'
 import PostCard from "../../components/PostCard";
 import Pagination from "../../components/Pagination";
@@ -6,8 +6,8 @@ import Seperator from '../../components/Seperator';
 import { POSTPERPAGE } from '../../config';
 import { ParsedUrlQuery } from 'querystring'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import axios from 'axios'
-import { HOST } from '../../config'
+import Head from 'next/head'
+import { capitalize } from 'lodash'
 
 type Props = {
   posts: Posts,
@@ -20,7 +20,11 @@ interface Params extends ParsedUrlQuery {
 
 const CategoryPosts = ({ posts, category }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <div>
+    <>
+      <Head>
+        <title>Waiting7777 - {capitalize(category)}</title>
+      </Head>
+      <div>
       <div className="container mx-auto py-16 px-6 sm:px-0">
         <div className="text-5xl font-medium capitalize">{category}</div>
         <div className='text-xl mt-2 pl-1'>A collection of {posts?.length} posts - 1 / {Math.ceil(posts.length / POSTPERPAGE)}</div>
@@ -47,6 +51,7 @@ const CategoryPosts = ({ posts, category }: InferGetStaticPropsType<typeof getSt
         </div>
       </div>
     </div>
+    </>
   )
 }
 

@@ -3,11 +3,9 @@ import PostCard from "../../components/PostCard";
 import Pagination from "../../components/Pagination";
 import Hero from "../../components/Hero";
 import type { Posts } from '../../services/posts'
-import { getPosts, getPost } from '../../services/posts';
+import { getPosts } from '../../services/posts';
 import Seperator from '../../components/Seperator';
 import { POSTPERPAGE } from '../../config';
-import { HOST } from '../../config'
-import axios from 'axios'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 
