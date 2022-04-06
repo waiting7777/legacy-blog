@@ -14,7 +14,11 @@ export type PostMarkdownAttributes = {
   slug: string;
 }
 
+export type Posts = PostMarkdownAttributes[]
+
 export type Post = PostMarkdownAttributes & { html: string }
+
+export type Categories = Record<string, number>
 
 export const POSTS_PATH = path.join(process.cwd(), 'contents/posts')
 
@@ -35,4 +39,22 @@ export async function getPost(slug: string) {
   const { attributes, body } = parseFrontMatter<PostMarkdownAttributes>(file.toString())
   const html = marked(body);
   return { ...attributes, html, readingTime: `${Math.ceil(body.length / 1024)} MIN` }
+}
+
+export async function getCategories() {
+  const posts = await getPosts()
+  const categories = posts.reduce((prev: Record<string, number>, curr: PostMarkdownAttributes) => {
+    if (prev[curr.category]) {
+      prev[curr.category] += 1
+    } else {
+      prev[curr.category] = 1
+    }
+    return prev
+  }, {})
+  return categories
+}
+
+export async function getPostsByCategory(category: string) {
+  const posts = await getPosts()
+  return posts.filter(post => post.category === category)
 }

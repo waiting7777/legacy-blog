@@ -1,31 +1,34 @@
+import { Posts, Categories } from '../../../services/posts'
 import { orderBy } from 'lodash'
-import PostCard from "../../components/PostCard";
-import Pagination from "../../components/Pagination";
-import Hero from "../../components/Hero";
-import type { Posts } from '../../services/posts'
-import Seperator from '../../components/Seperator';
-import { POSTPERPAGE } from '../../config';
-import { HOST } from '../../config'
-import axios from 'axios'
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import PostCard from "../../../components/PostCard";
+import Pagination from "../../../components/Pagination";
+import Seperator from '../../../components/Seperator';
+import { POSTPERPAGE } from '../../../config';
 import { ParsedUrlQuery } from 'querystring'
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import axios from 'axios'
+import { HOST } from '../../../config'
 
 type Props = {
   posts: Posts,
+  category: string,
   page: string
 }
 
 interface Params extends ParsedUrlQuery {
-  page: string,
+  category: string,
+  page: string
 }
 
-const ArchivePage = ({ posts, page }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const CategoryPosts = ({ posts, category, page }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const p = (Number(page) - 1) * POSTPERPAGE
 
   return (
     <div>
-      <Hero />
       <div className="container mx-auto py-16 px-6 sm:px-0">
+        <div className="text-5xl font-medium">{category}</div>
+        <div className='text-xl mt-2 pl-1'>A collection of {posts?.length} posts - 1 / {Math.ceil(posts.length / POSTPERPAGE)}</div>
+        <Seperator />
         <div className="grid grid-cols-3 relative mb-10">
           {posts[p + 0] && <PostCard key={posts[p + 0].title} post={posts[p + 0]} />}
           {posts[p + 1] && <PostCard key={posts[p + 1].title} post={posts[p + 1]} />}
@@ -44,7 +47,7 @@ const ArchivePage = ({ posts, page }: InferGetStaticPropsType<typeof getStaticPr
           {posts[p + 8] && <PostCard key={posts[p + 8].title} post={posts[p + 8]} />}
         </div>
         <div className="flex items-center justify-center mt-10">
-          <Pagination classify="archive" key={page} total={posts.length} startIndex={Number(page)} />
+          <Pagination classify={`category/${category}`} key={page} total={posts.length} startIndex={Number(page)} />
         </div>
       </div>
     </div>
@@ -52,12 +55,14 @@ const ArchivePage = ({ posts, page }: InferGetStaticPropsType<typeof getStaticPr
 }
 
 export async function getStaticPaths() {
-  const res = await axios.get(`${HOST}/api/posts`)
-  const posts: Posts = res.data
-  const paths = []
-  for (let i = 1; i <= Math.ceil(posts.length / POSTPERPAGE); i++) {
-    paths.push({ params: { page: i.toString() } })
-  }
+  const res = await axios.get(`${HOST}/api/category`)
+  const categories: Categories = res.data
+  const paths = [] as { params: Params }[]
+  Object.keys(categories).forEach(category => {
+    for (let i = 1; i <= Math.ceil(categories[category] / POSTPERPAGE); i++) {
+      paths.push({ params: { category, page: i.toString() } })
+    }
+  })
   
   return {
     paths,
@@ -68,8 +73,8 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const { page } = context.params as Params
-  const res = await axios.get(`${HOST}/api/posts`)
+  const { category, page } = context.params as Params
+  const res = await axios.get(`${HOST}/api/category/${category}`)
   const posts: Posts = res.data
 
   // By returning { props: { posts } }, the Blog component
@@ -77,9 +82,10 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (context) => 
   return {
     props: {
       posts: orderBy(posts, 'date', 'desc'),
+      category,
       page
     },
   }
 }
 
-export default ArchivePage
+export default CategoryPosts

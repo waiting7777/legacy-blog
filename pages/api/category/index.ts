@@ -1,14 +1,14 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { PostMarkdownAttributes } from '../../services/posts'
-import { getPosts } from '../../services/posts'
+import type { Categories } from '../../../services/posts'
+import { getCategories } from '../../../services/posts'
 
-type Data = PostMarkdownAttributes[] | null
+type Data = Categories
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const posts = await getPosts()
-  res.status(200).json(posts)
+  const categories = await getCategories()
+  res.status(200).json(categories)
 }
