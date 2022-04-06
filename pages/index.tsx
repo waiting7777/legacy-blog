@@ -48,7 +48,7 @@ export async function getStaticProps() {
   // will receive `posts` as a prop at build time
   return {
     props: {
-      posts: orderBy(posts, 'date', 'desc').slice(0, 10)
+      posts: orderBy(posts, 'date', 'desc')
     },
   }
 }
