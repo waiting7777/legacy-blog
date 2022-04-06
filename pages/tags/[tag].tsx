@@ -1,4 +1,4 @@
-import { Posts, Tags } from '../../services/posts'
+import { Posts, getTags, getPostsByTag } from '../../services/posts'
 import { orderBy } from 'lodash'
 import PostCard from "../../components/PostCard";
 import Pagination from "../../components/Pagination";
@@ -6,8 +6,6 @@ import Seperator from '../../components/Seperator';
 import { POSTPERPAGE } from '../../config';
 import { ParsedUrlQuery } from 'querystring'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import axios from 'axios'
-import { HOST } from '../../config'
 
 type Props = {
   posts: Posts,
@@ -51,8 +49,8 @@ const CategoryPosts = ({ posts, tag }: InferGetStaticPropsType<typeof getStaticP
 }
 
 export async function getStaticPaths() {
-  const res = await axios.get(`${HOST}/api/tags`)
-  const tags: Tags = res.data
+
+  const tags = await getTags()
   const paths = Object.keys(tags).map(tag => ({ params: { tag } }))
   
   return {
@@ -62,14 +60,10 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const { tag } = context.params as Params
-  const res = await axios.get(`${HOST}/api/tags/${tag}`)
-  const posts: Posts = res.data
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
+  const { tag } = context.params as Params
+  const posts = await getPostsByTag(tag)
+
   return {
     props: {
       posts: orderBy(posts, 'date', 'desc'),

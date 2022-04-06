@@ -1,8 +1,6 @@
 import type { InferGetStaticPropsType } from 'next'
 import Hero from '../components/Hero'
-import { HOST } from '../config'
-import axios from 'axios'
-import { Posts } from '../services/posts'
+import { getPosts } from '../services/posts'
 import { orderBy } from 'lodash'
 import PostCard from '../components/PostCard'
 import Seperator from '../components/Seperator'
@@ -39,13 +37,9 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 }
 
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const res = await axios.get(`${HOST}/api/posts`)
-  const posts: Posts = res.data
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
+  const posts = await getPosts()
+
   return {
     props: {
       posts: orderBy(posts, 'date', 'desc')

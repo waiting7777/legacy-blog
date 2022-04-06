@@ -1,9 +1,7 @@
 import Seperator from "../../components/Seperator"
 import Link from 'next/link'
-import { HOST } from '../../config'
-import axios from 'axios'
 import type { InferGetStaticPropsType } from 'next'
-import type { Categories } from '../../services/posts'
+import { getCategories } from "../../services/posts"
 
 const Category = ({ categories }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -30,13 +28,9 @@ const Category = ({ categories }: InferGetStaticPropsType<typeof getStaticProps>
 }
 
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const res = await axios.get(`${HOST}/api/category`)
-  const categories: Categories = res.data
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
+  const categories = await getCategories()
+
   return {
     props: {
       categories

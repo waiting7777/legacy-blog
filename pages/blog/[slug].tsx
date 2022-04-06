@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import type { Post, PostMarkdownAttributes } from '../../services/posts'
+import type { Post, Posts } from '../../services/posts'
 import { faFile, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import dayjs from 'dayjs'
@@ -11,6 +11,7 @@ import { ParsedUrlQuery } from 'querystring'
 import Image from 'next/image'
 import path from 'path'
 import Head from 'next/head'
+import { getPost, getPosts } from '../../services/posts'
 
 type Props = {
   post: Post
@@ -85,8 +86,7 @@ const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
 }
 
 export async function getStaticPaths() {
-  const res = await axios.get(`${HOST}/api/posts`)
-  const posts: PostMarkdownAttributes[] = res.data
+  const posts = await getPosts()
   const paths = posts.map(post => ({ params: { slug: post.slug } }))
   
   return {
@@ -96,14 +96,9 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
   const { slug } = context.params as Params
-  const res = await axios.get(`${HOST}/api/posts/${slug}`)
-  const post: Post = res.data
+  const post = await getPost(slug)
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
   return {
     props: {
       post

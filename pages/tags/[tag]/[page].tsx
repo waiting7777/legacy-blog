@@ -1,4 +1,4 @@
-import { Posts, Tags } from '../../../services/posts'
+import { Posts, Tags, getTags, getPostsByTag } from '../../../services/posts'
 import { orderBy } from 'lodash'
 import PostCard from "../../../components/PostCard";
 import Pagination from "../../../components/Pagination";
@@ -55,9 +55,10 @@ const TagPost = ({ posts, tag, page }: InferGetStaticPropsType<typeof getStaticP
 }
 
 export async function getStaticPaths() {
-  const res = await axios.get(`${HOST}/api/tags`)
-  const tags: Tags = res.data
+
+  const tags = await getTags()
   const paths = [] as { params: Params }[]
+
   Object.keys(tags).forEach(tag => {
     for (let i = 1; i <= Math.ceil(tags[tag] / POSTPERPAGE); i++) {
       paths.push({ params: { tag, page: i.toString() } })
@@ -71,14 +72,10 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const { tag, page } = context.params as Params
-  const res = await axios.get(`${HOST}/api/tags/${tag}`)
-  const posts: Posts = res.data
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
+  const { tag, page } = context.params as Params
+  const posts = await getPostsByTag(tag)
+
   return {
     props: {
       posts: orderBy(posts, 'date', 'desc'),

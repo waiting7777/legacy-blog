@@ -1,4 +1,4 @@
-import { Posts, Categories } from '../../../services/posts'
+import { Posts, Categories, getCategories, getPostsByCategory } from '../../../services/posts'
 import { orderBy } from 'lodash'
 import PostCard from "../../../components/PostCard";
 import Pagination from "../../../components/Pagination";
@@ -55,9 +55,10 @@ const CategoryPosts = ({ posts, category, page }: InferGetStaticPropsType<typeof
 }
 
 export async function getStaticPaths() {
-  const res = await axios.get(`${HOST}/api/category`)
-  const categories: Categories = res.data
+
+  const categories = await getCategories()
   const paths = [] as { params: Params }[]
+
   Object.keys(categories).forEach(category => {
     for (let i = 1; i <= Math.ceil(categories[category] / POSTPERPAGE); i++) {
       paths.push({ params: { category, page: i.toString() } })
@@ -71,14 +72,10 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const { category, page } = context.params as Params
-  const res = await axios.get(`${HOST}/api/category/${category}`)
-  const posts: Posts = res.data
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
+  const { category, page } = context.params as Params
+  const posts = await getPostsByCategory(category)
+
   return {
     props: {
       posts: orderBy(posts, 'date', 'desc'),

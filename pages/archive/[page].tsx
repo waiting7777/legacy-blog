@@ -3,6 +3,7 @@ import PostCard from "../../components/PostCard";
 import Pagination from "../../components/Pagination";
 import Hero from "../../components/Hero";
 import type { Posts } from '../../services/posts'
+import { getPosts, getPost } from '../../services/posts';
 import Seperator from '../../components/Seperator';
 import { POSTPERPAGE } from '../../config';
 import { HOST } from '../../config'
@@ -52,8 +53,7 @@ const ArchivePage = ({ posts, page }: InferGetStaticPropsType<typeof getStaticPr
 }
 
 export async function getStaticPaths() {
-  const res = await axios.get(`${HOST}/api/posts`)
-  const posts: Posts = res.data
+  const posts = await getPosts()
   const paths = []
   for (let i = 1; i <= Math.ceil(posts.length / POSTPERPAGE); i++) {
     paths.push({ params: { page: i.toString() } })
@@ -66,14 +66,10 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const { page } = context.params as Params
-  const res = await axios.get(`${HOST}/api/posts`)
-  const posts: Posts = res.data
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
+  const { page } = context.params as Params
+  const posts = await getPosts()
+
   return {
     props: {
       posts: orderBy(posts, 'date', 'desc'),

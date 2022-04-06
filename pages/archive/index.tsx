@@ -1,10 +1,7 @@
 import Seperator from "../../components/Seperator"
 import Link from "next/link"
 import { orderBy } from "lodash"
-import type { Posts } from "../../services/posts"
-import dayjs from "dayjs"
-import { HOST } from '../../config'
-import axios from 'axios'
+import { getPosts } from "../../services/posts"
 import type { InferGetStaticPropsType } from 'next'
 
 const Archive = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -18,7 +15,7 @@ const Archive = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           <li key={post.slug}>
             <div className="leading-8 flex gap-4">
               <div>
-                {dayjs(post.date).format('YYYY-MM-DD')}
+                {post.date}
               </div>
               <div>
                 <Link href={`/blog/${post.slug}`}>
@@ -36,13 +33,9 @@ const Archive = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 }
 
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const res = await axios.get(`${HOST}/api/posts`)
-  const posts: Posts = res.data
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
+  const posts = await getPosts()
+
   return {
     props: {
       posts: orderBy(posts, 'date', 'desc')

@@ -29,7 +29,7 @@ function PostCard({ post }: { post: PostMarkdownAttributes }) {
             <Image width="32" height="32" src="/images/author/author1.png" alt='author1' />
           </div>
           <div className="flex flex-col leading-none ml-3 pl-3 border-l border-[#e2e8f0] text-gray-main text-xs gap-1">
-            <div>{dayjs(post.date).format('YYYY-MM-DD')}</div>
+            <div>{post.date}</div>
             <div>{post.readingTime}</div>
           </div>
         </div>

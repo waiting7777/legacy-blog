@@ -2,6 +2,7 @@ import path from 'path'
 import fs from 'fs/promises'
 import parseFrontMatter from 'front-matter'
 import { marked } from 'marked'
+import dayjs from 'dayjs'
 
 export type PostMarkdownAttributes = {
   title: string;
@@ -30,7 +31,7 @@ export async function getPosts() {
     dir.map(async (filename) => {
       const file = await fs.readFile(path.join(POSTS_PATH, filename), 'utf8')
       const { attributes, body } = parseFrontMatter<PostMarkdownAttributes>(file.toString())
-      return { ...attributes, readingTime: `${Math.ceil(body.length / 1024)} MIN` }
+      return { ...attributes, date: dayjs(attributes.date).format('YYYY-MM-DD'), readingTime: `${Math.ceil(body.length / 1024)} MIN` }
     })
   )
 }
@@ -40,7 +41,7 @@ export async function getPost(slug: string) {
   const file = await fs.readFile(filepath);
   const { attributes, body } = parseFrontMatter<PostMarkdownAttributes>(file.toString())
   const html = marked(body);
-  return { ...attributes, html, readingTime: `${Math.ceil(body.length / 1024)} MIN` }
+  return { ...attributes, date: dayjs(attributes.date).format('YYYY-MM-DD'), html, readingTime: `${Math.ceil(body.length / 1024)} MIN` }
 }
 
 export async function getCategories() {
