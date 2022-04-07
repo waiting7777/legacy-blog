@@ -1,9 +1,17 @@
+import Image from "next/image"
+
 function Hero() {
   return (
-    <div className="flex justify-center items-center flex-col w-full h-[45vh] bg-black tracking-wide leading-none">
-      <div className="font-bold text-gray-200 text-7xl mb-4">Waiting7777</div>
-      <div className="text-slate-400 text-xl mb-2">Never perfect. Perfection goal that changes. Never stops moving. Can chase, cannot catch.</div>
-      <div className="text-slate-400 text-xl ">從來沒有完美。完美是變動的目標，從未停止，能夠追求，但永遠達不到。</div>
+    <div className="hero">
+      <div className="hero-container w-[940px] mx-auto py-4 px-4">
+        <div className="mr-8 flex items-center">
+          <Image width="250" height="250" src="/images/author/author1.jpeg" alt='author1' />
+        </div>
+        <div className="content-right leading-6">
+          <div className="text-3xl font-bold mb-2">Hi 👋</div>
+          I'm Waiting7777, a web developer specializing in <b>modern Javascript</b>, <b>Data Visulization</b>, <b>Crypto</b>.<br/><br/>I've been building stuff on the web for the last 7 years, working with clients across various countries and industries.<br/><br/>This website is my digital garden of notes on backend, frontend, and devops!
+        </div>
+      </div>
     </div>
   )
 }
