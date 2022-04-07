@@ -11,7 +11,7 @@ function Header() {
           <Link href="/" passHref>
             <div className='mr-4 cursor-pointer flex items-center gap-1'>
               <FontAwesomeIcon className='w-5 h-5' icon={faDragon} />
-              <span className='ml-2 text-xl'>Import Data</span>
+              <span className='ml-2 text-xl'>Waiting7777</span>
             </div>
           </Link>
           <div>
@@ -36,9 +36,6 @@ function Header() {
           </div>
         </div>
         <div className="flex gap-4">
-          <div className="mr-2">
-            <Link href="/about">Waiting7777</Link>
-          </div>
           <div>
             <a href="https://www.github.com/waiting7777" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={faGithub} />
