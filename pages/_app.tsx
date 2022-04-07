@@ -2,9 +2,23 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Header from '../components/Header'
 import Head from 'next/head'
-import Script from 'next/script'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import * as gtag from '../lib/gtag'
+import { GA_TRACKING_ID } from '../lib/gtag'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
+
   return (
     <>
       <Head>
@@ -16,18 +30,24 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:url" content="https://waiting7777.org" />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="waiting7777" />
+        {/* Global Site Tag (gtag.js) - Google Analytics */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_TRACKING_ID}', {
+            page_path: window.location.pathname,
+          });
+        `,
+          }}
+        />
       </Head>
-      <Script id="google-analytics" strategy="afterInteractive">
-        {
-          `(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-33995800-1', 'auto');
-          ga('send', 'pageview');`
-          }
-      </Script>
       <Header />
       <Component {...pageProps} />
     </>

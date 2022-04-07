@@ -26,7 +26,7 @@ function PostCard({ post }: { post: PostMarkdownAttributes }) {
       <div className='px-6 flex-shrink-0'>
         <div className="flex items-center mt-2">
           <div className="w-8 h-8 rounded-full overflow-hidden">
-            <Image width="32" height="32" src="/images/author/author1.png" alt='author1' />
+            <Image width="32" height="32" src="/images/author/author1.jpeg" alt='author1' />
           </div>
           <div className="flex flex-col leading-none ml-3 pl-3 border-l border-[#e2e8f0] text-gray-main text-xs gap-1">
             <div>{post.date}</div>
