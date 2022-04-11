@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import * as gtag from '../lib/gtag'
 import { GA_TRACKING_ID } from '../lib/gtag'
+import Footer from '../components/Footer'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -50,6 +51,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Header />
       <Component {...pageProps} />
+      <Footer />
     </>
   )
  

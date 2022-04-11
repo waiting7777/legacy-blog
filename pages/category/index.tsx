@@ -10,7 +10,7 @@ const Category = ({ categories }: InferGetStaticPropsType<typeof getStaticProps>
       <Head>
         <title>Waiting7777 - 分類 Category</title>
       </Head>
-      <div className="container mx-auto py-10 px-4 min-h-[calc(100%-100px)]">
+      <div className="container mx-auto py-10 px-4 min-h-[calc(100vh-100px)]">
         <div className="text-5xl font-medium">分類 Category</div>
         <Seperator />
         <ul className="pl-10">
