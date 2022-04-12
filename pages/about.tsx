@@ -4,7 +4,7 @@ import Image from "next/image"
 const about = () => {
   return (
     <>
-      <div className="w-[880px] mx-auto py-10">
+      <div className="container py-10">
         <Image width="250" height="250" src="/images/author/author1.jpeg" alt='author1' />
         <div className="mt-4">
           I&apos;m Waiting7777，我是個工程師，擅長<b className="text-red-main">資料視覺化</b>、<b className="text-red-main">前端開發</b>、<b className="text-red-main">Crypto</b>，可以在 <a href="https://github.com/waiting7777" target="_blank" rel="noreferrer" className="text-red-main">我的 Github</a> 上看到我的開源項目，閒言閒語大部分用 <a href="https://twitter.com/waiting7777" target="_blank" rel="noreferrer" className="text-red-main">Twitter</a>，偶爾寫寫 Blog 整理心得。或是剪剪遊戲精華放<a href="https://www.youtube.com/channel/UCOlwT9QX7G5cGKB1JM5qI6A" target="_blank" rel="noreferrer" className="text-red-main">Youtube</a>。

@@ -3,8 +3,8 @@ import Image from "next/image"
 function Hero() {
   return (
     <div className="hero">
-      <div className="hero-container w-[940px] mx-auto py-4 px-4">
-        <div className="mr-8 flex items-center">
+      <div className="hero-container gap-4 md:gap-8 md:flex-row md:w-[940px] mx-auto py-4 px-4">
+        <div className="flex items-center">
           <Image width="250" height="250" src="/images/author/author1.jpeg" alt='author1' />
         </div>
         <div className="content-right leading-6">

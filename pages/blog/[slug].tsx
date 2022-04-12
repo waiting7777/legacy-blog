@@ -11,6 +11,7 @@ import Image from 'next/image'
 import path from 'path'
 import Head from 'next/head'
 import { getPost, getPosts } from '../../services/posts'
+import useWindowSize from '../../hooks/useWindowSize'
 
 type Props = {
   post: Post
@@ -21,6 +22,8 @@ interface Params extends ParsedUrlQuery {
 }
 
 const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const { width } = useWindowSize()
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       let script = document.createElement("script");
@@ -59,10 +62,16 @@ const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css'></link>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github.min.css'></link>
       </Head>
-      <div className='container mx-auto p-10'>
-        <div className='rounded-lg mb-10'>
-          <Image width="1060" height="480" loading='lazy' src={path.join('/blog', post.image)} className="w-full h-full object-cover rounded-lg" alt="" />
-        </div>
+      <div className='container py-8 md:py-16'>
+        {width > 768 ? (
+          <div className='rounded-lg mb-10'>
+            <Image width="1060" height="480" loading='lazy' src={path.join('/blog', post.image)} className="w-full h-full object-cover rounded-lg" alt="" />
+          </div>
+        ): (
+          <div className='rounded-lg mb-4'>
+            <Image width="640" height="360" loading='lazy' src={path.join('/blog', post.image)} className="w-full h-full object-cover rounded-lg" alt="" />
+          </div>
+        )}
         <div className='markdown-body mx-auto'>
           <div className='font-medium text-4xl mt-4 mb-2'>{post.title}</div>
           <div className='gap-4 flex items-center'>
@@ -78,7 +87,7 @@ const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
             ))}
           </div>
         </div>
-        <div id="utterances"></div>
+        <div id="utterances mt-4"></div>
       </div>
     </>
   )

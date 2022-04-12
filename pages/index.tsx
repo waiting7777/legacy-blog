@@ -10,20 +10,20 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <div>
       <Hero />
-      <div className="container py-16 px-6 sm:px-4">
-        <div className="grid grid-cols-3 relative mb-10">
+      <div className="container py-8 md:py-16">
+        <div className="grid gap-4 md:gap-8 md:grid-cols-3 relative mb-10">
           <PostCard post={posts[0]} />
           <PostCard post={posts[1]} />
           <PostCard post={posts[2]} />
         </div>
         <Seperator />
-        <div className="grid grid-cols-3 relative mb-10">
+        <div className="grid gap-4 md:gap-8 md:grid-cols-3 relative mb-10">
           <PostCard post={posts[3]} />
           <PostCard post={posts[4]} />
           <PostCard post={posts[5]} />
         </div>
         <Seperator />
-        <div className="grid grid-cols-3 relative">
+        <div className="grid gap-4 md:gap-8 md:grid-cols-3 relative">
           <PostCard post={posts[6]} />
           <PostCard post={posts[7]} />
           <PostCard post={posts[8]} />

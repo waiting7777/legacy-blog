@@ -25,23 +25,23 @@ const CategoryPosts = ({ posts, category }: InferGetStaticPropsType<typeof getSt
         <title>Waiting7777 - {capitalize(category)}</title>
       </Head>
       <div>
-      <div className="container mx-auto py-16 px-6 sm:px-0">
-        <div className="text-5xl font-medium capitalize">{category}</div>
+      <div className="container py-8 md:py-16">
+        <div className="text-3xl md:text-5xl font-medium capitalize">{category}</div>
         <div className='text-xl mt-2 pl-1'>A collection of {posts?.length} posts - 1 / {Math.ceil(posts.length / POSTPERPAGE)}</div>
         <Seperator />
-        <div className="grid grid-cols-3 relative mb-10">
+        <div className="grid gap-4 md:gap-8 md:grid-cols-3 relative mb-10">
           {posts[0] && <PostCard post={posts[0]} />}
           {posts[1] && <PostCard post={posts[1]} />}
           {posts[2] && <PostCard post={posts[2]} />}
         </div>
         {posts[3] && <Seperator />}
-        <div className="grid grid-cols-3 relative mb-10">
+        <div className="grid gap-4 md:gap-8 md:grid-cols-3 relative mb-10">
           {posts[3] && <PostCard post={posts[3]} />}
           {posts[4] && <PostCard post={posts[4]} />}
           {posts[5] && <PostCard post={posts[5]} />}
         </div>
         {posts[6] && <Seperator />}
-        <div className="grid grid-cols-3 relative mb-10">
+        <div className="grid gap-4 md:gap-8 md:grid-cols-3 relative mb-10">
           {posts[6] && <PostCard post={posts[6]} />}
           {posts[7] && <PostCard post={posts[7]} />}
           {posts[8] && <PostCard post={posts[8]} />}

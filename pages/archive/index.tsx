@@ -13,13 +13,13 @@ const Archive = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <title>Waiting7777 - 文章列表 Archive</title>
       </Head>
       <div className="container mx-auto py-10 px-4 min-h-[calc(100vh-100px)]">
-        <div className="text-5xl font-medium">文章列表 Archive</div>
+        <div className="text-3xl md:text-5xl font-medium">文章列表 Archive</div>
         <Seperator />
-        <ul className="pl-10">
+        <ul className="pl-4 md:pl-10">
           {posts.map(post => (
             <li key={post.slug}>
               <div className="leading-8 flex gap-4">
-                <div>
+                <div className="whitespace-nowrap">
                   {post.date}
                 </div>
                 <div>

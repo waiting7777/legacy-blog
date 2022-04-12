@@ -23,23 +23,23 @@ const CategoryPosts = ({ posts, category, page }: InferGetStaticPropsType<typeof
 
   return (
     <div>
-      <div className="container mx-auto py-16 px-6 sm:px-0">
-        <div className="text-5xl font-medium capitalize">{category}</div>
+      <div className="container py-8 md:py-16">
+        <div className="text-3xl md:text-5xl font-medium capitalize">{category}</div>
         <div className='text-xl mt-2 pl-1'>A collection of {posts?.length} posts - 1 / {Math.ceil(posts.length / POSTPERPAGE)}</div>
         <Seperator />
-        <div className="grid grid-cols-3 relative mb-10">
+        <div className="grid gap-4 md:gap-8 md:grid-cols-3 relative mb-10">
           {posts[p + 0] && <PostCard key={posts[p + 0].title} post={posts[p + 0]} />}
           {posts[p + 1] && <PostCard key={posts[p + 1].title} post={posts[p + 1]} />}
           {posts[p + 2] && <PostCard key={posts[p + 2].title} post={posts[p + 2]} />}
         </div>
         {posts[p + 3] && <Seperator />}
-        <div className="grid grid-cols-3 relative mb-10">
+        <div className="grid gap-4 md:gap-8 md:grid-cols-3 relative mb-10">
           {posts[p + 3] && <PostCard key={posts[p + 3].title} post={posts[p + 3]} />}
           {posts[p + 4] && <PostCard key={posts[p + 4].title} post={posts[p + 4]} />}
           {posts[p + 5] && <PostCard key={posts[p + 5].title} post={posts[p + 5]} />}
         </div>
         {posts[p + 6] && <Seperator />}
-        <div className="grid grid-cols-3 relative">
+        <div className="grid gap-4 md:gap-8 md:grid-cols-3 relative">
           {posts[p + 6] && <PostCard key={posts[p + 6].title} post={posts[p + 6]} />}
           {posts[p + 7] && <PostCard key={posts[p + 7].title} post={posts[p + 7]} />}
           {posts[p + 8] && <PostCard key={posts[p + 8].title} post={posts[p + 8]} />}

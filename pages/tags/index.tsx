@@ -12,7 +12,7 @@ const Tags = ({ tags }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <title>Waiting7777 - 標籤 Tag</title>
       </Head>
       <div className="container mx-auto py-10 px-4 min-h-[calc(100vh-100px)]">
-        <div className="text-5xl font-medium">標籤 Tags</div>
+        <div className="text-3xl md:text-5xl font-medium">標籤 Tags</div>
         <Seperator />
         <div className='flex gap-4 flex-wrap'>
           {Object.entries(tags).map(tag => (

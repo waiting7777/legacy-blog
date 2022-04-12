@@ -6,7 +6,7 @@ import path from 'path'
 
 function PostCard({ post }: { post: PostMarkdownAttributes }) {
   return (
-    <div className="h-[520px] flex flex-1 flex-col mx-4 pb-8 bg-white shadow-md transform transition-transform hover:-translate-y-px hover:scale-[1.02] rounded-lg">
+    <div className="h-[520px] flex flex-1 flex-col pb-8 bg-white shadow-md transform transition-transform hover:-translate-y-px hover:scale-[1.02] rounded-lg">
       <Link href={`/blog/${post.slug}`} passHref> 
         <a className="block relative rounded-t h-[200px] flex-shrink-0">
           <Image className="w-full h-full object-cover rounded-t" layout='fill' loading='lazy' src={path.join('/blog', post.image)} alt={post.title} />

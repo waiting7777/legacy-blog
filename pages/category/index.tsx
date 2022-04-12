@@ -10,16 +10,16 @@ const Category = ({ categories }: InferGetStaticPropsType<typeof getStaticProps>
       <Head>
         <title>Waiting7777 - 分類 Category</title>
       </Head>
-      <div className="container mx-auto py-10 px-4 min-h-[calc(100vh-100px)]">
-        <div className="text-5xl font-medium">分類 Category</div>
+      <div className="container py-10 min-h-[calc(100vh-100px)]">
+        <div className="text-3xl md:text-5xl font-medium">分類 Category</div>
         <Seperator />
-        <ul className="pl-10">
+        <ul className="pl-4 md:pl-10">
           {Object.entries(categories).map(category => (
             <li key={category[0]}>
               <div className="leading-8 flex gap-4">
                 <div>
                   <Link href={`/category/${category[0]}`}>
-                    <a className="hover:text-blue-500 capitalize">
+                    <a className="hover:text-blue-500 text-red-main capitalize">
                       {`${category[0]}(${category[1]})`}
                     </a>
                   </Link>

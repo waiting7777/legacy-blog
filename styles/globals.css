@@ -14,12 +14,6 @@
   padding: 45px;
 }
 
-@media (max-width: 767px) {
-  .markdown-body {
-    padding: 15px;
-  }
-}
-
 .markdown-body>main>p>code {
   color: #e83e8c;
 }
@@ -44,7 +38,6 @@ html {
 
 .utterances {
   max-width: 880px !important;
-  transform: translate(-64px, 0px);
 }
 
 .hero {
@@ -59,4 +52,15 @@ html {
   display: flex;
   background-color: #f2f2f2;
   border: 2px solid #ccc;
+  flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+
+  .utterances {
+    max-width: 100% !important;
+  }
 }
