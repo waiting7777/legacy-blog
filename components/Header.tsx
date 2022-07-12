@@ -38,6 +38,11 @@ function Header() {
               關於我
             </Link>
           </div>
+          <div className='hidden md:block'>
+            <Link href="/leetcode">
+              LeetCode
+            </Link>
+          </div>
         </div>
         <div className='flex items-center md:hidden' onClick={() => {
           setMenuOpen(prev => !prev)
@@ -63,6 +68,11 @@ function Header() {
           <div>
             <Link href="/about">
               關於我
+            </Link>
+          </div>
+          <div>
+            <Link href="/leetcode">
+              LeetCode
             </Link>
           </div>
         </div>

@@ -18,7 +18,10 @@ module.exports = {
         },
         red: {
           main: "#862121"
-        }
+        },
+        easy: "#43a047",
+        medium: "#f0ad4e;",
+        hard: "#d9534f",
       }
     },
   },

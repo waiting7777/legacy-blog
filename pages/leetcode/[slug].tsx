@@ -1,21 +1,14 @@
 import { useEffect } from 'react'
-import type { Post, Posts } from '../../services/posts'
-import { faFile, faCoffee } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import dayjs from 'dayjs'
-import Tag from '../../components/Tag'
+import type { LeetcodePost } from '../../services/leetcodes'
 import { HOST } from '../../config'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { ParsedUrlQuery } from 'querystring'
-import Image from 'next/image'
-import path from 'path'
 import Head from 'next/head'
-import { getPost, getPosts } from '../../services/posts'
-import useWindowSize from '../../hooks/useWindowSize'
+import { getPost, getPosts } from '../../services/leetcodes'
 import hljs from 'highlight.js'
 
 type Props = {
-  post: Post
+  post: LeetcodePost
 }
 
 interface Params extends ParsedUrlQuery {
@@ -23,11 +16,8 @@ interface Params extends ParsedUrlQuery {
 }
 
 const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { width } = useWindowSize()
-
   useEffect(() => {
     hljs.initHighlighting();
-  
     if (typeof window !== 'undefined') {
       let script = document.createElement("script");
       let anchor = document.getElementById("utterances");
@@ -49,16 +39,14 @@ const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <Head>
-        <title>{`Waiting7777 - ${post.title}`}</title>
-        <meta name="description" content={post.excerpt} />
+        <title>{`Leetcode - ${post.title}`}</title>
+        <meta name="description" content={post.title} />
         <meta property="og:title" content={`Waiting7777 - ${post.title}`} />
-        <meta property="og:description" content={post.excerpt} />
-        <meta property="og:image" content={`${HOST}${post.image}`} />
+        <meta property="og:description" content={post.title} />
         <meta property="og:url" content={`${HOST}/blog/${post.slug}`} />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="waiting7777" />
-        <meta property="article:published_time" content={dayjs(post.date).toISOString()} />
-        <meta property="article:tag" content={post.tags} />
+        <meta property="article:tag" content={post.tag} />
         <meta property="article:section" content="Blog" />
         <meta property="article:author" content="waiting7777" />
         <meta property="article:publisher" content="waiting7777" />
@@ -66,29 +54,9 @@ const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github.min.css'></link>
       </Head>
       <div className='container py-8 md:py-16'>
-        {width > 768 ? (
-          <div className='rounded-lg mb-10'>
-            <Image width="1060" height="480" loading='lazy' src={path.join('/blog', post.image)} className="w-full h-full object-cover rounded-lg" alt="" />
-          </div>
-        ): (
-          <div className='rounded-lg mb-4'>
-            <Image width="640" height="360" loading='lazy' src={path.join('/blog', post.image)} className="w-full h-full object-cover rounded-lg" alt="" />
-          </div>
-        )}
         <div className='markdown-body mx-auto'>
           <div className='font-medium text-4xl mt-4 mb-2'>{post.title}</div>
-          <div className='gap-4 flex items-center'>
-            <div>{dayjs(post.date).format('YYYY-MM-DD')}</div>
-            <div className='cursor-pointer flex items-center gap-1'><FontAwesomeIcon className='w-5 h-5' icon={faFile} /> {post.category}</div>
-            <div className='flex items-center gap-1 mt-1'><FontAwesomeIcon className='w-5 h-5' icon={faCoffee} /> {post.readingTime}</div>
-          </div>
-          <div className='mt-10'></div>
           <main dangerouslySetInnerHTML={{ __html: post.html }} />
-          <div className="flex gap-3 mt-10">
-            {post.tags.split(', ').map(tag => (
-              <Tag key={tag} tag={tag} />
-            ))}
-          </div>
         </div>
         <div id="utterances" className='mt-4'></div>
       </div>
