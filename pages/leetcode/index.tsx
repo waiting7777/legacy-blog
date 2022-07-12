@@ -43,7 +43,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: orderBy(posts, 'id', 'desc')
+      posts: orderBy(posts, 'id', 'asc')
     },
   }
 }

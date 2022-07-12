@@ -55,7 +55,7 @@ const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
       </Head>
       <div className='container py-8 md:py-16'>
         <div className='markdown-body mx-auto'>
-          <div className='font-medium text-4xl mt-4 mb-2'>{post.title}</div>
+          <div className='font-medium text-4xl mt-4 mb-2'>{post.id}. {post.title}</div>
           <main dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
         <div id="utterances" className='mt-4'></div>
