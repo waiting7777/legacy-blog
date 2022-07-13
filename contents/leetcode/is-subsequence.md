@@ -1,11 +1,11 @@
---
+---
 id: 392
 title: Is Subsequence
 difficulty: easy
 tag: two pointers, string, dynamic programming
 similar:
 slug: is-subsequence
---
+---
 
 Given two strings `s` and `t`, return `true` if `s` is a **subsequence** of `t`, or `false` otherwise.
 
