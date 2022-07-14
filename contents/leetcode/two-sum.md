@@ -2,7 +2,7 @@
 id: 1
 title: Two Sum
 difficulty: easy
-tag: array, hash table
+tags: array, hash table
 similar:
 slug: two-sum
 ---

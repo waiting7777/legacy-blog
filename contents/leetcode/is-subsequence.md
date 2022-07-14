@@ -2,7 +2,7 @@
 id: 392
 title: Is Subsequence
 difficulty: easy
-tag: two pointers, string, dynamic programming
+tags: two pointers, string, dynamic programming
 similar:
 slug: is-subsequence
 ---

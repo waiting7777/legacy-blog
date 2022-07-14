@@ -1,13 +1,19 @@
 import type { InferGetStaticPropsType } from 'next'
-import { getPosts } from '../../services/leetcodes'
+import { getPosts, getTags } from '../../services/leetcodes'
 import { orderBy } from 'lodash'
 import Link from 'next/link'
 import classNames from 'classnames'
+import Tag from '../../components/Tag'
 
-const LeetCode = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const LeetCode = ({ posts, tags }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <div className='container py-10'>
       <div>
+        {/* <div className='flex gap-4 flex-wrap'>
+          {Object.entries(tags).map(tag => (
+            <Tag key={tag[0]} tag={tag[0]} prefix="leetcode" />
+          ))}
+        </div> */}
         <table className="min-w-full">
         <thead className="bg-white border-b">
             <tr>
@@ -40,10 +46,12 @@ const LeetCode = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => 
 export async function getStaticProps() {
 
   const posts = await getPosts()
+  const tags = await getTags()
 
   return {
     props: {
-      posts: orderBy(posts, 'id', 'asc')
+      posts: orderBy(posts, 'id', 'asc'),
+      tags
     },
   }
 }

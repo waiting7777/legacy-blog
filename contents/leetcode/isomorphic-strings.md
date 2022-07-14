@@ -2,7 +2,7 @@
 id: 205
 title: Isomorphic Strings
 difficulty: easy
-tag: hash table, string
+tags: hash table, string
 similar:
 slug: isomorphic-strings
 ---

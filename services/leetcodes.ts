@@ -7,7 +7,7 @@ export type PostMarkdownAttributes = {
   id: string;
   title: string;
   difficulty: string;
-  tag: string;
+  tags: string;
   similar: string;
   slug: string;
 }
@@ -35,4 +35,21 @@ export async function getPost(slug: string) {
   const { attributes, body } = parseFrontMatter<PostMarkdownAttributes>(file.toString())
   const html = marked(body);
   return { ...attributes, html }
+}
+
+export async function getTags() {
+  const posts = await getPosts()
+  const tags = posts.reduce((prev: Record<string, number>, curr: PostMarkdownAttributes) => {
+    if (curr?.tags) {
+      curr.tags.split(', ').forEach(tag => {
+        if (prev[tag]) {
+          prev[tag] += 1
+        } else {
+          prev[tag] = 1
+        }
+      })
+    }
+    return prev
+  }, {})
+  return tags
 }

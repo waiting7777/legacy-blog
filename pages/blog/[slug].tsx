@@ -86,7 +86,7 @@ const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
           <main dangerouslySetInnerHTML={{ __html: post.html }} />
           <div className="flex gap-3 mt-10">
             {post.tags.split(', ').map(tag => (
-              <Tag key={tag} tag={tag} />
+              <Tag key={tag} tag={tag.toLowerCase()} />
             ))}
           </div>
         </div>
