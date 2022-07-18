@@ -33,6 +33,8 @@ const LeetCode = ({ posts, tags }: InferGetStaticPropsType<typeof getStaticProps
                 </td>
                 <td className={classNames({
                   "text-easy": post.difficulty === "easy",
+                  "text-medium": post.difficulty === "medium",
+                  "text-hard": post.difficulty === "hard",
                   }, "px-6 py-2 whitespace-no-wrap border-b border-gray-200 text-right capitalize")}>{post.difficulty}</td>
               </tr>
             ))}

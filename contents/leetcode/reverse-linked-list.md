@@ -2,7 +2,7 @@
 id: 206
 title: Reverse Linked List
 difficulty: easy
-tags: linked list, recursion
+tags: Linked List, Recursion
 similar:
 slug: reverse-linked-list
 ---

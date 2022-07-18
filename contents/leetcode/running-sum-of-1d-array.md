@@ -2,7 +2,7 @@
 id: 1480
 title: Running Sum of 1d Array
 difficulty: easy
-tags: array, prefix sum
+tags: Array, Prefix Sum
 similar:
 slug: running-sum-of-1d-array
 ---

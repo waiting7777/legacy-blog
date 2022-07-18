@@ -2,7 +2,7 @@
 id: 724
 title: Find Pivot Index
 difficulty: easy
-tags: array, prefix sum
+tags: Array, Prefix Sum
 similar:
 slug: find-pivot-index
 ---

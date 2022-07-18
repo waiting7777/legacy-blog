@@ -2,7 +2,7 @@
 id: 21
 title: Merge Two Sorted Lists
 difficulty: easy
-tags: linked list, recursion
+tags: Linked List, Recursion
 similar:
 slug: merge-two-sorted-lists
 ---

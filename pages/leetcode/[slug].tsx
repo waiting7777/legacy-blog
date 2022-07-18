@@ -46,7 +46,7 @@ const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta property="og:url" content={`${HOST}/blog/${post.slug}`} />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="waiting7777" />
-        <meta property="article:tag" content={post.tag} />
+        <meta property="article:tag" content={post.tags} />
         <meta property="article:section" content="Blog" />
         <meta property="article:author" content="waiting7777" />
         <meta property="article:publisher" content="waiting7777" />
