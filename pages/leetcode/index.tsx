@@ -9,11 +9,6 @@ const LeetCode = ({ posts, tags }: InferGetStaticPropsType<typeof getStaticProps
   return (
     <div className='container py-10'>
       <div>
-        {/* <div className='flex gap-4 flex-wrap'>
-          {Object.entries(tags).map(tag => (
-            <Tag key={tag[0]} tag={tag[0]} prefix="leetcode" />
-          ))}
-        </div> */}
         <table className="min-w-full">
         <thead className="bg-white border-b">
             <tr>
