@@ -47,6 +47,16 @@ const Sorting = () => {
                 <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">O(1)</td>
                 <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">No</td>
               </tr>
+              <tr className="hover:bg-gray-100">
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200 text-red-main">
+                  <Link href="/sorting/insertion-sort">Insertion Sort</Link>
+                </td>
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n)</td>
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n<sup>2</sup>)</td>
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n<sup>2</sup>)</td>
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">O(1)</td>
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Yes</td>
+              </tr>
             </tbody>
           </table>
       </div>
