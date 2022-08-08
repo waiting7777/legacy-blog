@@ -26,7 +26,7 @@ const BlogPost = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { width } = useWindowSize()
 
   useEffect(() => {
-    hljs.initHighlighting();
+    hljs.highlightAll();
   
     if (typeof window !== 'undefined') {
       let script = document.createElement("script");
