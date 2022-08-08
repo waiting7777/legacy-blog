@@ -29,13 +29,23 @@ const Sorting = () => {
             <tbody>
               <tr className="hover:bg-gray-100">
                 <td className="px-6 py-2 whitespace-no-wrap border border-gray-200 text-red-main">
-                  <Link href="/sorting/bubblesort">Bubble Sort</Link>
+                  <Link href="/sorting/bubble-sort">Bubble Sort</Link>
                 </td>
                 <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n)</td>
                 <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n<sup>2</sup>)</td>
                 <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n<sup>2</sup>)</td>
                 <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">O(1)</td>
                 <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Yes</td>
+              </tr>
+              <tr className="hover:bg-gray-100">
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200 text-red-main">
+                  <Link href="/sorting/selection-sort">Selection Sort</Link>
+                </td>
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n<sup>2</sup>)</td>
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n<sup>2</sup>)</td>
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n<sup>2</sup>)</td>
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">O(1)</td>
+                <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">No</td>
               </tr>
             </tbody>
           </table>
