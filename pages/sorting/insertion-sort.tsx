@@ -6,7 +6,7 @@ import { faPlay, faShuffle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import hljs from 'highlight.js'
 import Head from 'next/head';
-import type { BarData } from "./type";
+import type { BarData } from "../../services/sort";
 
 function sleep(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
