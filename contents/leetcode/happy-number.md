@@ -40,7 +40,7 @@ Output: false
 
 - `1 <= n <= 2^31 - 1`
 
-## Solution
+## Solution:
 
 ```
 /**
@@ -65,6 +65,6 @@ var isHappy = function(n) {
 }
 ```
 
-## Expalnation
+## Expalnation:
 
 每輪將數值記下來，如果有重複的數值，則代表會循環，因此不是 happy number。

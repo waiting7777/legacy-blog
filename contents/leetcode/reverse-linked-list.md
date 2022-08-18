@@ -39,7 +39,7 @@ Output: []
 - The number of nodes in the list is in the range `[0, 5000]`.
 - -5000 <= Node.val <= 5000
 
-## Solution
+## Solution:
 
 ```
 /**
@@ -70,6 +70,6 @@ var reverseList = function(head) {
 };
 ```
 
-## Explaintion
+## Explaintion:
 
 Nope.

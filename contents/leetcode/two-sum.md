@@ -42,7 +42,7 @@ Output: [0,1]
 - `-10^9 <= target <= 10^9`
 - **Only one valid answer exists.**
 
-## Solution
+## Solution:
 
 ```
 /**

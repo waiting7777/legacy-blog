@@ -1,4 +1,3 @@
-import * as echarts from 'echarts';
 import { useEffect, useState } from "react";
 import ReactECharts from 'echarts-for-react';
 import dynamic from 'next/dynamic'
@@ -7,16 +6,22 @@ import { faPlay, faShuffle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import hljs from 'highlight.js'
 import Head from 'next/head';
+import type { BarData } from "./type";
 
 function sleep(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-const randomData =  () => new Array(20).fill(0).map((_, i) => Math.floor(Math.random() * 30))
+const randomData =  () => new Array(20).fill(0).map((_, i) => ({ 
+  value: Math.floor(Math.random() * 30),
+  itemStyle: {
+    color: "#4682B4"
+  }
+}))
 
 const Sorting = () => {
-  const [data, setData] = useState<number[]>(randomData());
-  const [prev, setPrev] = useState<number[]>(data);
+  const [data, setData] = useState<BarData[]>(randomData());
+  const [prev, setPrev] = useState<BarData[]>(data);
   const [sorting, setSorting] = useState<boolean>(false);
 
   useEffect(() => {
@@ -29,14 +34,18 @@ const Sorting = () => {
     
     for (let i = 1; i < n; i++) {
       let j = i
-      while (j > 0 && arr[j] < arr[j - 1]) {
-        await sleep(300)
+      for (let k = 0; k < j; k++) {
+        arr[k].itemStyle.color = "#38761d"
+      }
+      while (j > 0 && arr[j].value < arr[j - 1].value) {
         setPrev([...arr])
         let tempValue = arr[j]
+        tempValue.itemStyle.color = "#FF0000"
         arr[j] = arr[j - 1]
         arr[j - 1] = tempValue
         setData([...arr])
         j--
+        await sleep(300)
       }
     }
     setSorting(false)
@@ -77,7 +86,7 @@ const Sorting = () => {
         <div className='text-xl mt-4'>Values:</div>
         <div className='flex justify-between items-center'>
           <div className='flex gap-1'>[{data.map((v, i) => (
-            <div key={i} className={classNames({ 'text-red-500': data[i] !== prev[i]})}>{v},</div>
+            <div key={i} className={classNames({ 'text-red-500': data[i].value !== prev[i].value})}>{v.value},</div>
           ))}]</div>
           <div className='flex gap-4 items-center'>
           <button onClick={() => start()} className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded flex gap-2 items-center">

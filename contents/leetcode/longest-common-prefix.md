@@ -31,7 +31,7 @@ Output: ""
 - `0 <= strs[i].length <= 200`
 - `strs[i]` consists of only lower-case English letters.
 
-## Solution
+## Solution:
 
 ```
 /**
@@ -53,6 +53,6 @@ var longestCommonPrefix = function(strs) {
 }
 ```
 
-## Expalnation
+## Expalnation:
 
 先預設第一個 string 是答案，然後依序往後比對，只要 indexOf(res) 不是 0，就代表它不是後面項目的 prefix，那就把 res 後面的字元去掉，直到空字串或是找到答案為止。

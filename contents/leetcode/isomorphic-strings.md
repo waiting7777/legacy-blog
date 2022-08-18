@@ -40,7 +40,7 @@ Output: true
 - `t.length == s.length`
 - `s` and `t` consist any valid ascii character.
 
-## Solution
+## Solution:
 
 ```
 /**
@@ -66,6 +66,6 @@ var isIsomorphic = function(s, t) {
 }
 ```
 
-## Expalnation
+## Expalnation:
 
 建立兩個 map，當 s[i] t[i] 都第一次出現時，在兩邊建立對應，如果不是第一次出現就檢查是否相同，如果不相同就 return false

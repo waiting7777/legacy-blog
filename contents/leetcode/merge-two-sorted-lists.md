@@ -42,7 +42,7 @@ Output: [0]
 - `-100 <= node.val <= 100`
 - Both the lists are sorted in non-decreasing order.
 
-## Solution
+## Solution:
 
 ```
 /**
@@ -79,6 +79,6 @@ var mergeTwoLists = function(list1, list2) {
 }
 ```
 
-## Expalnation
+## Expalnation:
 
 判斷 `list1.val` 與 `list2.val` 將 next 接往比較小的那邊，反覆直到兩個 list 都為空。

@@ -1,4 +1,3 @@
-import * as echarts from 'echarts';
 import { useEffect, useState } from "react";
 import ReactECharts from 'echarts-for-react';
 import dynamic from 'next/dynamic'
@@ -7,16 +6,22 @@ import { faPlay, faShuffle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import hljs from 'highlight.js'
 import Head from 'next/head';
+import type { BarData } from './type'
 
 function sleep(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-const randomData =  () => new Array(20).fill(0).map((_, i) => Math.floor(Math.random() * 30))
+const randomData =  () => new Array(20).fill(0).map((_, i) => ({ 
+  value: Math.floor(Math.random() * 30),
+  itemStyle: {
+    color: "#4682B4"
+  }
+}))
 
 const Sorting = () => {
-  const [data, setData] = useState<number[]>(randomData());
-  const [prev, setPrev] = useState<number[]>(data);
+  const [data, setData] = useState<BarData[]>(randomData());
+  const [prev, setPrev] = useState<BarData[]>(data);
   const [sorting, setSorting] = useState<boolean>(false);
 
   useEffect(() => {
@@ -29,15 +34,20 @@ const Sorting = () => {
     
     while (toIndex > 1) {
       toIndex--
+      for (let i = toIndex; i < arr.length; i++) {
+        arr[i].itemStyle.color = "#38761d"
+      }
       for (let i = 0; i < toIndex; i++) {
         // 如果前面的元素比後面的元素要大，則交換元素位置
-        if (arr[i] > arr[i + 1]) {
-          await sleep(300)
+        arr[i].itemStyle.color = "#4682B4"
+        if (arr[i].value > arr[i + 1].value) {
           setPrev([...arr])
           let tempValue = arr[i]
+          tempValue.itemStyle.color = "#FF0000"
           arr[i] = arr[i + 1]
           arr[i + 1] = tempValue
           setData([...arr])
+          await sleep(300)
         }
       }
     }
@@ -82,7 +92,7 @@ const Sorting = () => {
         <div className='text-xl mt-4'>Values:</div>
         <div className='flex justify-between items-center'>
           <div className='flex gap-1'>[{data.map((v, i) => (
-            <div key={i} className={classNames({ 'text-red-500': data[i] !== prev[i]})}>{v},</div>
+            <div key={i} className={classNames({ 'text-red-500': data[i].value !== prev[i].value})}>{v.value},</div>
           ))}]</div>
           <div className='flex gap-4 items-center'>
           <button onClick={() => start()} className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded flex gap-2 items-center">
@@ -114,7 +124,37 @@ const Sorting = () => {
           }}
         />
         <div>
-          <div className='text-xl mt-8'>Implementation</div>
+          <div className='text-xl mt-4'>Time Complexity:</div>
+          <div className='mt-4'>
+          <table className="min-w-full text-center">
+            <thead className="bg-white border-b">
+                <tr>
+                  <th className="px-6 py-3 border border-gray-200 bg-gray-100 text-md leading-4 font-bold tracking-wider" rowSpan={2}></th>
+                  <th className="px-6 py-3 border border-gray-200 bg-gray-100 text-md leading-4 font-bold tracking-wider" colSpan={3}>Time Complexity</th>
+                  <th className="px-6 py-3 border border-gray-200 bg-gray-100 text-md leading-4 font-bold tracking-wider" rowSpan={2}>Space Complexity</th>
+                  <th className="px-6 py-3 border border-gray-200 bg-gray-100 text-md leading-4 font-bold tracking-wider" rowSpan={2}>Stable</th>
+                </tr>
+                <tr>
+                  <th className="px-6 py-3 border border-gray-200 bg-gray-100 text-md leading-4 font-bold tracking-wider">Best</th>
+                  <th className="px-6 py-3 border border-gray-200 bg-gray-100 text-md leading-4 font-bold tracking-wider">Worst</th>
+                  <th className="px-6 py-3 border border-gray-200 bg-gray-100 text-md leading-4 font-bold tracking-wider">Avg</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="hover:bg-gray-100">
+                  <td className="px-6 py-2 whitespace-no-wrap border border-gray-200 text-red-main">
+                    Bubble Sort
+                  </td>
+                  <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n)</td>
+                  <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n<sup>2</sup>)</td>
+                  <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Ο(n<sup>2</sup>)</td>
+                  <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">O(1)</td>
+                  <td className="px-6 py-2 whitespace-no-wrap border border-gray-200">Yes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className='text-xl mt-8'>Implementation:</div>
           <pre className='mt-4'>
             <code className='language-javascript'>
               {

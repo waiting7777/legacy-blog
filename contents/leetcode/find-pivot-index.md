@@ -51,7 +51,7 @@ Right sum = nums[1] + nums[2] = 1 + -1 = 0
 - `1 <= nums.length <= 10^4`
 - `-10000 <= nums[i] <= 10000`
 
-## Solution
+## Solution:
 
 ```
 /**

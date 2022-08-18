@@ -31,7 +31,7 @@ Output: false
 - `0 <= t.length <= 10^4`
 - `s` and `t` consist of lowercase English letters.
 
-## Solution
+## Solution:
 
 ```
 /**
@@ -53,6 +53,6 @@ var isSubsequence = function(s, t) {
 }
 ```
 
-## Expalnation
+## Expalnation:
 
 設置字串 s 跟 t 指針，開始檢查字串 t 每個字元，當跟 s 字元相同時，將 s 指針往右移，如果已經跑完整個 s 字串，則為 true，否則為 false。

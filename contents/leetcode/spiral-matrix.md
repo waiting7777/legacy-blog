@@ -34,7 +34,7 @@ Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 - `1 <= m, n <= 10`
 - `-100 <= matrix[i][j] <= 100
 
-## Solution
+## Solution:
 
 ```
 /**
@@ -77,6 +77,6 @@ var spiralOrder = function(matrix) {
 };
 ```
 
-## Explanation
+## Explanation:
 
 從 [0, 0] 開始遍歷 array，將數值放入 res，然後將數值設為 0，並且檢查是否可以繼續遍歷，如果不能繼續遍歷，就改變方向，並且更新 x, y。

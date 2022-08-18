@@ -32,7 +32,7 @@ Output: false
 - The number of nodes in the list is in the range `[1, 10^5]`
 - `0 <= Node.val <= 9`
 
-## Solution
+## Solution:
 
 ```
 /**
@@ -91,6 +91,6 @@ var isPalindrome = function(head) {
 }
 ```
 
-## Explanation
+## Explanation:
 
 先用快慢指針找到中點，再從中點反轉，比對前半段與後半段是否相等。

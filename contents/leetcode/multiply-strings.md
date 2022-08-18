@@ -31,7 +31,7 @@ Output: "56088"
 - `num1` and `num2` consist of digits only.
 - Both `num1` and `num2` do not contain any leading zero, except the number 0 itself.
 
-## Solution
+## Solution:
 
 ```
 /**

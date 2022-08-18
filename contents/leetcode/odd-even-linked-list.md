@@ -38,7 +38,7 @@ Output: [2,3,6,7,1,5,4]
 - The number of nodes in the list is in the range `[0, 10^4]`
 - `-10^6 <= Node.val <= 10^6`
 
-## Solution
+## Solution:
 
 ```
 /**
@@ -70,6 +70,6 @@ var oddEvenList = function(head) {
 }
 ```
 
-## Explanation
+## Explanation:
 
 將 head 分成兩個部分，odd 和 even。跑完整個 list 再把 odd 和 even 連接起來。

@@ -39,7 +39,7 @@ Output: [3,4,6,16,17]
 - `1 <= nums.length <= 1000`
 - `-10^6 <= nums[i] <= 10^6`
 
-## Solution
+## Solution:
 
 ```
 /**
@@ -56,6 +56,6 @@ var runningSum = function(nums) {
 };
 ```
 
-## Expalnation
+## Expalnation:
 
 因為每一項皆為前一項總和加自己，所以建一個 for loop，記住前面總和就可以了。
