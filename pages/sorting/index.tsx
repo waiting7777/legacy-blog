@@ -7,7 +7,7 @@ const Sorting = () => {
       <div className="mt-4">
         在 Computer Sicence 中，Sorting Algorithm 是能將資料排序的演算法。<br/>
         通常用 Big O 來做時間空間的分析。<br/>
-        另外根據排序結果有分為兩種 **Stable** / **Unstable**  <br/><br/>
+        另外根據排序結果有分為兩種 <b>Stable</b> / <b>Unstable</b>  <br/><br/>
         Stable 的排序在排序後依然可以維持同鍵值元素的相對位置，Unstable 的排序則無法。<br/>
       </div>
       <div className="text-3xl mt-4">常用排序演算法整理</div>
