@@ -33,7 +33,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:url" content="https://waiting7777.org" />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="waiting7777" />
-        {/* Global Site Tag (gtag.js) - Google Analytics */}
         <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
