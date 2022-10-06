@@ -1,7 +1,7 @@
 ---
 id: 112
 title: Path Sum
-difficulty: Easy
+difficulty: easy
 tags: Tree, Depth-First Search, Breadth-First Search, Binary Tree
 similar:
 slug: path-sum
