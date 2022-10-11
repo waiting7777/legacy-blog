@@ -1,7 +1,7 @@
 ---
 id: 2
 title: Add Two Numbers
-difficulty: easy
+difficulty: medium
 tags: Linked List, Math, Recursion
 similar:
 slug: add-two-numbers
