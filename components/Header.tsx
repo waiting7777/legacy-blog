@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { faTwitter, faLinkedin, faTwitch, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faDragon, faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,6 +7,7 @@ import classNames from 'classnames'
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
+  const [leetCodeOpen, setLeetCodeOpen] = useState<boolean>(false)
 
   return (
     <div className="sticky top-0 h-12 bg-black text-white z-50">
@@ -38,10 +39,28 @@ function Header() {
               關於我
             </Link>
           </div>
-          <div className='hidden md:block'>
-            <Link href="/leetcode">
-              LeetCode
-            </Link>
+          <div className='hidden md:block relative'>
+            <div className='cursor-pointer select-none' onClick={() => setLeetCodeOpen(prev => !prev)}>LeetCode</div>
+            {leetCodeOpen && (
+              <div className="absolute top-10 -left-4 w-[200px] bg-black flex flex-col">
+                <Link
+                  href="/leetcode"
+                  passHref
+                >
+                  <div className="hover:bg-red-main px-4 py-2 cursor-pointer" onClick={() => setLeetCodeOpen(false)}>
+                    LeetCode - Javascript
+                  </div>
+                </Link>
+                <Link
+                  href="/leetcode-rust"
+                  passHref
+                >
+                  <div className="hover:bg-red-main px-4 py-2 cursor-pointer" onClick={() => setLeetCodeOpen(false)}>
+                    LeetCode - Rust
+                  </div>
+                </Link>
+              </div>
+            )}
           </div>
           <div className='hidden md:block'>
             <Link href="/sorting">

@@ -43,37 +43,27 @@ Output: [8,9,9,9,0,0,0,1]
 
 ## Solution:
 
-```
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- */
-var addTwoNumbers = function(l1, l2) {
-    var carry = 0;
-    var sum = 0;
-    var head = new ListNode(0);
-    var now = head;
-    var a = l1;
-    var b = l2;
-    while (a !== null || b !== null) {
-        sum = (a ? a.val : 0) + (b ? b.val : 0) + carry;
-        carry = Math.floor(sum / 10);
-        now.next = new ListNode(sum % 10);
-        now = now.next;
-        a = a ? a.next : null;
-        b = b ? b.next : null;
+```rust
+use std::collections::HashMap;
+
+impl Solution {
+    pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let len_ns = nums.len();
+        let mut num_to_idx: HashMap<i32, usize> = HashMap::with_capacity(len_ns);
+        for (idx, num) in nums.into_iter().enumerate() {
+            let expected_sum = target - num;
+            match num_to_idx.get(&expected_sum) {
+                Some(&prev_idx) => {
+                    return vec![prev_idx as i32, idx as i32];
+                }
+                None => {
+                    num_to_idx.insert(num, idx);
+                }
+            }
+        }
+        unreachable!()
     }
-    if (carry) now.next = new ListNode(carry);
-    return head.next;
-};
+}
 ```
 
 ## Explanation:
