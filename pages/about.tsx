@@ -7,7 +7,7 @@ const about = () => {
       <div className="container py-10">
         <Image width="250" height="250" src="/images/author/author1.jpeg" alt='author1' />
         <div className="mt-4">
-          I&apos;m Waiting7777，我是個工程師，擅長<b className="text-red-main">資料視覺化</b>、<b className="text-red-main">前端開發</b>、<b className="text-red-main">Crypto</b>，可以在 <a href="https://github.com/waiting7777" target="_blank" rel="noreferrer" className="text-red-main">我的 Github</a> 上看到我的開源項目，閒言閒語大部分用 <a href="https://twitter.com/waiting7777" target="_blank" rel="noreferrer" className="text-red-main">Twitter</a>，偶爾寫寫 Blog 整理心得。
+          I&apos;m Waiting7777，我是個工程師，擅長<b className="text-red-main">資料視覺化</b>、<b className="text-red-main">網站開發</b>、，可以在 <a href="https://github.com/waiting7777" target="_blank" rel="noreferrer" className="text-red-main">我的 Github</a> 上看到我的開源項目，偶爾寫寫 Blog 整理心得。
           <br/><br/>
           很喜歡鑽研一些最新的趨勢，常常在拓荒中探索自己的興趣，並且把自己的經驗分享給大家。前陣子也接觸了不少 Crypto 的相關技術，例如前端如何跟鏈上智能合約互動，如何做出 Dex, Swap 等等網站。
           <br/><br/>
@@ -20,7 +20,7 @@ const about = () => {
           Project
         </div>
         <div className="mt-4">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           <div className="flex flex-col gap-1">
               <a href="https://www.berry-ai.com/" target="_blank" rel="noopener noreferrer" className="text-red-main">
                 <Image src="/images/about/berry-ai.png" alt="trevi" width="360" height="180" />  

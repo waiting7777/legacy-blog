@@ -9,7 +9,7 @@ function Hero() {
         </div>
         <div className="content-right leading-6">
           <div className="text-3xl font-bold mb-2">Hi 👋</div>
-          I&apos;m <span className="text-red-main">Waiting7777</span>, a web developer specializing in <b>modern Javascript</b>, <b>Data Visualization</b>, <b>Crypto</b>.<br/><br/>I&apos;ve been building stuff on the web for the last 5 years, working with clients across various countries and industries.<br/><br/>This website is my digital garden of notes on Frontend, Data Visualization, and Crypto!
+          I&apos;m <span className="text-red-main">Waiting7777</span>, a web developer specializing in <b>modern Javascript</b>, <b>Data Visualization</b>.<br/><br/>I&apos;ve been building stuff on the web for the last 7 years, working with clients across various countries and industries.<br/><br/>This website is my digital garden of notes on Frontend, Data Visualization!
         </div>
       </div>
     </div>
